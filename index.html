@@ -1,0 +1,81 @@
+<!DOCTYPE html><html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Sejarah Lampu — Dari Api ke LED</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Hanken+Grotesk:wght@400;600&display=swap">
+<style>
+:root{--bg:#f6f1e6;--bg2:#ece5d3;--panel:#fffdf6;--ink:#241d14;--soft:#645a49;--line:#d8cfb8;--off:#cfc6b0;--on:#ffd35c;--glow:rgba(255,190,70,.38);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14100b;--bg2:#1c1710;--panel:#241e14;--ink:#f3ead7;--soft:#b3a78f;--line:#3a3122;--off:#3b3426;--glow:rgba(255,190,70,.28)}}
+:root[data-theme="dark"]{--bg:#14100b;--bg2:#1c1710;--panel:#241e14;--ink:#f3ead7;--soft:#b3a78f;--line:#3a3122;--off:#3b3426;--glow:rgba(255,190,70,.28)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Hanken Grotesk',system-ui,sans-serif;line-height:1.55;overflow-x:hidden}
+h1,h2,.big{font-family:'Fraunces',Georgia,serif}
+.hero{max-width:1100px;margin:0 auto;padding:2.6rem 1.4rem 1rem;display:grid;grid-template-columns:1.3fr 1fr;gap:2rem;align-items:center;position:relative}
+.hero::before{content:"";position:absolute;right:0;top:0;width:60%;height:100%;background:radial-gradient(circle at 50% 45%,var(--glow),transparent 65%);opacity:0;transition:opacity .6s;pointer-events:none}
+.hero.on::before{opacity:1}
+.hero h1{font-size:clamp(2.4rem,6.5vw,4.4rem);line-height:1;margin:0 0 .8rem;font-weight:800;letter-spacing:-.02em}
+.hero p{color:var(--soft);margin:0;max-width:44ch}
+.bulbbtn{justify-self:center;background:none;border:0;cursor:pointer;padding:0;color:var(--ink);text-align:center;position:relative}
+.bulbbtn:focus-visible{outline:3px solid var(--on);outline-offset:6px;border-radius:12px}
+.bulbbtn svg{width:min(52vw,210px);height:auto;display:block}
+.glass{fill:var(--off);transition:fill .5s,filter .5s}
+.on .glass{fill:var(--on);filter:drop-shadow(0 0 22px rgba(255,190,70,.85))}
+.fil{stroke:var(--soft);stroke-width:2.2;fill:none;transition:stroke .5s}
+.on .fil{stroke:#b4600c}
+.base{fill:var(--soft)}
+.bulbbtn small{display:block;margin-top:.4rem;font-size:.85rem;color:var(--soft)}
+.stats{max-width:1100px;margin:0 auto;padding:.5rem 1.4rem 1.6rem;display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem}
+.st{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:.9rem 1rem}
+.st b{display:block;font-family:'Fraunces',Georgia,serif;font-size:1.7rem;font-weight:800;line-height:1.1;color:var(--ink)}
+.st span{font-size:.84rem;color:var(--soft)}
+.hint{max-width:1100px;margin:0 auto;padding:0 1.4rem .6rem;font-size:.88rem;color:var(--soft)}
+.carousel-wrap{position:relative;max-width:1100px;margin:0 auto}
+.track{overflow-x:auto;scroll-snap-type:x proximity;padding:1.2rem 1.4rem 2rem;display:flex;gap:1.2rem;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg2);scrollbar-width:none;scroll-behavior:smooth}
+.track::-webkit-scrollbar{display:none}
+.nav-btn{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:var(--panel);border:1px solid var(--line);color:var(--ink);font-size:1.1rem;cursor:pointer;z-index:10;transition:opacity .2s}
+.nav-btn:focus-visible{outline:3px solid var(--on)}
+.prev{left:.5rem}.next{right:.5rem}
+.era{flex:0 0 min(84vw,350px);scroll-snap-align:start;position:relative;padding-top:2.6rem}
+.era::before{content:"";position:absolute;left:-1.2rem;right:0;top:.55rem;height:2px;background:var(--line)}
+.era:first-child::before{left:0}
+.era::after{content:"";position:absolute;left:0;top:.2rem;width:.8rem;height:.8rem;border-radius:50%;background:var(--c);box-shadow:0 0 0 4px var(--bg2)}
+.yr{position:absolute;top:0;right:0;font-size:.85rem;font-weight:600;color:var(--soft)}
+.era h2{margin:0 0 .7rem;font-size:1.55rem;line-height:1.1;font-weight:800}
+.big{font-size:2.5rem;font-weight:800;line-height:1;color:var(--c)}
+.bl{font-size:.84rem;color:var(--soft);margin:.25rem 0 .9rem}
+.box{background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--c);border-radius:10px;padding:1rem}
+.box p{margin:0 0 .8rem;font-size:.93rem;color:var(--soft)}
+.box .s{font-size:.78rem;margin:0;padding-top:.6rem;border-top:1px solid var(--line)}
+.src{max-width:1100px;margin:1.4rem auto 3rem;padding:0 1.4rem}
+.src-in{display:flex;gap:1.2rem;align-items:flex-start;background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:1rem 1.2rem}
+.qr{flex:0 0 auto;width:116px;height:116px;background:#fff;border-radius:8px;padding:6px;line-height:0}
+.qr svg{width:100%;height:100%;display:block}
+.src-t{font-size:.86rem;color:var(--soft);min-width:0}
+.src-t strong{display:block;color:var(--ink);font-size:1rem;margin-bottom:.3rem}
+.src-t a{color:var(--ink);word-break:break-all}
+.src-t ul{margin:.4rem 0 0;padding-left:1.1rem}
+@media(max-width:720px){.hero{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.nav-btn{display:none}}
+@media(max-width:480px){.src-in{flex-direction:column}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style></head><body>
+<header class="hero" id="h"><div><h1>Dari Api ke LED</h1><p>Enam era pencahayaan, dari lampu lemak hewan di gua Lascaux sampai LED biru peraih Nobel.</p></div>
+<button class="bulbbtn" id="b" aria-pressed="false" aria-label="Nyalakan bohlam"><svg viewBox="0 0 120 170" aria-hidden="true"><path class="glass" d="M60 8C34 8 16 27 16 52c0 17 8 28 16 38 5 6 8 12 8 20v6h40v-6c0-8 3-14 8-20 8-10 16-21 16-38C104 27 86 8 60 8z"/><path class="fil" d="M48 116V84l12 14 12-14v32"/><rect class="base" x="40" y="118" width="40" height="10" rx="3"/><rect class="base" x="44" y="131" width="32" height="10" rx="3"/><rect class="base" x="52" y="144" width="16" height="9" rx="4"/></svg><small id="bt">Klik bohlam untuk menyalakan</small></button></header>
+<section class="stats"><div class="st"><b>±250.000</b><span>tahun lalu, bukti perapian terkendali</span></div><div class="st"><b>10×</b><span>efisiensi mantel gas Welsbach vs api terbuka</span></div><div class="st"><b>1,7→15</b><span>lumen/watt bohlam pijar, 1880–1920</span></div><div class="st"><b>2014</b><span>Nobel Fisika untuk LED biru</span></div></section>
+<div class="hint">Geser atau pakai panah untuk menelusuri lini masa →</div>
+<div class="carousel-wrap"><button class="nav-btn prev" aria-label="Sebelumnya">❮</button><div class="track" id="t"></div><button class="nav-btn next" aria-label="Selanjutnya">❯</button></div>
+<footer class="src"><div class="src-in"><div class="qr" role="img" aria-label="QR code menuju artikel sumber utama"><svg viewBox="0 0 172 172" width="172" height="172" class="segno"><g transform="scale(4)"><path fill="#fff" d="M0 0h43v43h-43z"/><path class="qrline" stroke="#111" d="M1 1.5h7m2 0h1m1 0h4m1 0h6m1 0h1m1 0h1m3 0h1m1 0h2m1 0h7m-41 1h1m5 0h1m5 0h2m3 0h1m3 0h1m2 0h5m1 0h1m1 0h1m1 0h1m5 0h1m-41 1h1m1 0h3m1 0h1m1 0h2m1 0h3m1 0h1m1 0h2m2 0h4m9 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m1 0h2m2 0h3m1 0h1m2 0h1m1 0h1m2 0h4m1 0h1m4 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m1 0h3m1 0h3m2 0h3m2 0h2m6 0h3m1 0h1m1 0h3m1 0h1m-41 1h1m5 0h1m1 0h2m4 0h4m2 0h3m4 0h3m4 0h1m5 0h1m-41 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-33 1h1m2 0h1m4 0h1m4 0h2m9 0h1m-33 1h1m1 0h5m5 0h2m1 0h1m1 0h1m1 0h1m2 0h1m1 0h6m2 0h1m1 0h5m-39 1h2m2 0h1m2 0h2m1 0h1m1 0h6m1 0h2m2 0h4m1 0h2m1 0h4m1 0h1m1 0h1m1 0h1m-39 1h1m2 0h2m1 0h2m1 0h2m1 0h1m1 0h2m3 0h2m2 0h4m1 0h1m1 0h1m1 0h3m-35 1h2m4 0h2m3 0h1m1 0h1m3 0h4m1 0h1m1 0h1m1 0h1m2 0h2m1 0h1m2 0h1m2 0h1m-41 1h1m3 0h1m1 0h3m1 0h2m1 0h1m1 0h1m1 0h1m1 0h2m1 0h1m1 0h3m2 0h1m1 0h1m5 0h2m1 0h1m-40 1h2m2 0h1m2 0h1m1 0h9m6 0h2m1 0h1m1 0h5m1 0h1m1 0h1m1 0h1m-41 1h1m2 0h1m2 0h2m4 0h3m1 0h1m1 0h1m1 0h2m1 0h6m4 0h1m1 0h2m-36 1h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h2m6 0h3m2 0h2m2 0h1m1 0h1m1 0h4m2 0h1m-40 1h2m2 0h3m1 0h1m5 0h3m4 0h2m1 0h2m1 0h2m1 0h1m1 0h1m1 0h1m2 0h2m-39 1h1m1 0h1m4 0h3m3 0h1m1 0h1m2 0h2m2 0h1m4 0h1m2 0h2m1 0h4m1 0h2m-41 1h2m2 0h3m5 0h2m1 0h1m2 0h1m1 0h1m1 0h1m1 0h6m2 0h1m1 0h1m1 0h2m-36 1h1m5 0h1m6 0h1m3 0h2m2 0h2m1 0h3m3 0h1m1 0h1m1 0h2m2 0h1m-41 1h1m1 0h1m3 0h3m2 0h1m3 0h1m2 0h5m2 0h1m1 0h3m2 0h1m5 0h1m1 0h1m-41 1h1m1 0h4m3 0h4m1 0h1m1 0h1m2 0h1m3 0h1m4 0h1m1 0h7m2 0h2m-39 1h1m1 0h3m5 0h1m2 0h1m1 0h2m1 0h1m1 0h1m1 0h1m1 0h4m4 0h2m2 0h1m-38 1h3m1 0h1m1 0h3m1 0h1m3 0h2m1 0h1m2 0h2m4 0h2m2 0h1m2 0h2m1 0h1m1 0h1m-37 1h1m2 0h3m3 0h2m1 0h1m1 0h1m4 0h6m1 0h1m5 0h1m1 0h3m-40 1h5m2 0h4m2 0h1m1 0h1m1 0h3m1 0h3m4 0h1m2 0h1m1 0h2m1 0h2m1 0h2m-38 1h1m1 0h3m1 0h1m2 0h3m1 0h1m1 0h1m2 0h2m2 0h3m1 0h2m1 0h1m2 0h1m-34 1h2m1 0h1m1 0h1m1 0h2m1 0h1m6 0h6m3 0h1m2 0h5m1 0h1m1 0h1m-39 1h3m2 0h7m2 0h3m1 0h1m1 0h2m1 0h3m2 0h1m1 0h1m5 0h2m-39 1h1m1 0h4m3 0h2m1 0h3m1 0h1m3 0h3m1 0h1m3 0h1m1 0h3m2 0h4m1 0h1m-41 1h1m1 0h1m2 0h2m1 0h1m2 0h1m1 0h1m1 0h1m1 0h3m1 0h2m1 0h1m2 0h1m4 0h7m-39 1h1m3 0h1m3 0h1m1 0h4m1 0h2m2 0h4m1 0h1m1 0h3m2 0h5m1 0h1m2 0h1m-41 1h1m2 0h5m1 0h2m2 0h2m2 0h1m1 0h2m1 0h1m1 0h1m1 0h2m1 0h1m1 0h6m1 0h2m-32 1h4m1 0h2m1 0h2m2 0h2m1 0h1m1 0h2m1 0h2m2 0h1m3 0h2m1 0h2m-41 1h7m5 0h2m3 0h1m3 0h1m3 0h3m2 0h3m1 0h1m1 0h2m1 0h1m-40 1h1m5 0h1m1 0h1m1 0h1m1 0h4m1 0h7m2 0h1m3 0h3m3 0h2m2 0h1m-41 1h1m1 0h3m1 0h1m1 0h7m1 0h1m3 0h2m1 0h2m2 0h1m1 0h1m2 0h6m-38 1h1m1 0h3m1 0h1m1 0h2m1 0h2m2 0h1m1 0h3m1 0h3m1 0h1m2 0h1m3 0h2m1 0h1m2 0h3m-41 1h1m1 0h3m1 0h1m1 0h2m1 0h1m2 0h1m1 0h1m1 0h1m1 0h2m5 0h1m1 0h1m1 0h1m1 0h5m-38 1h1m5 0h1m2 0h1m2 0h1m1 0h2m1 0h1m1 0h3m1 0h1m2 0h3m2 0h3m2 0h2m1 0h1m-40 1h7m1 0h1m2 0h1m1 0h1m3 0h1m1 0h1m2 0h5m2 0h3m3 0h3"/></g></svg></div><div class="src-t"><strong>“A Brief History of Lighting”</strong><div>Penulis: David DiLaura (Universitas Colorado Boulder)</div><div>Terbit: <i>Optics &amp; Photonics News</i>, Optica, 1 September 2008</div><div><a href="https://www.optica-opn.org/home/articles/volume_19/issue_9/features/a_brief_history_of_lighting/" target="_blank" rel="noopener">optica-opn.org/…/a_brief_history_of_lighting</a></div><div>Pindai QR untuk membaca artikel utama.</div><div style="margin-top:.6rem"><b>Sumber pendukung:</b></div><ul><li><a href="https://www.nobelprize.org/prizes/physics/2014/press-release/" target="_blank" rel="noopener">Nobel Prize: siaran pers Fisika 2014</a></li><li><a href="https://displaydaily.com/physics-prize-goes-to-led-inventors/" target="_blank" rel="noopener">Display Daily: Physics Prize Goes to LED Inventors</a></li><li><a href="https://www.tokyoweekender.com/japan-life/news-and-opinion/blue-leds-joint-invention-of-three-japanese-researchers-wins-physics-nobel/" target="_blank" rel="noopener">Tokyo Weekender: Blue LEDs wins physics Nobel</a></li><li><a href="https://hoarelea.com/2019/01/08/fire-and-filaments-the-history-of-lighting" target="_blank" rel="noopener">Hoare Lea: Fire and filaments</a></li><li><a href="https://19january2025snapshot.epa.gov/mercury/how-energy-independence-and-security-act-2007-affects-light-bulbs" target="_blank" rel="noopener">EPA: EISA 2007 dan bohlam</a></li></ul></div></div></footer>
+<script>
+var D=[
+["#d9622b","Api dan lampu lemak","±250.000–15.000 th lalu","100+","lampu lemak ditemukan di gua Lascaux","Bukti perapian terkendali muncul sekitar 250.000 tahun lalu. Lemak hewan kemungkinan jadi bahan bakar penerangan tertua setelah kayu. Lukisan gua Lascaux di Prancis, berusia sekitar 15.000 tahun, diperkirakan dibuat dengan cahaya lampu lemak.","Optica OPN (2008)"],
+["#e08e1b","Minyak dan lilin","4.500 th lalu–1780","4.500+","tahun usia bukti lampu minyak di Ur","Lampu minyak sudah dipakai di Ur, Mesopotamia, dengan minyak zaitun dan wijen. Lilin modern baru muncul di Roma abad ke-1 M dan, karena mahal, hampir hanya dipakai untuk ibadah. Pada 1780 Ami Argand membuat sumbu melingkar berongga yang lebih terang dan efisien.","Optica OPN (2008)"],
+["#c9a82a","Lampu gas","1805–1910","¼","biaya lampu gas dibanding minyak atau lilin (1825)","William Murdoch merintis sistem gas batu bara praktis pada 1805–1813. Frederick Winsor mendirikan perusahaan gas pertama di dunia di London (1812), dan pabrik gas kota pertama AS berdiri di Baltimore (1816). Mantel Welsbach (1882) menaikkan efisiensi sekitar 10 kali, tetapi pada 1910 gas tak sanggup lagi bersaing dengan listrik.","Optica OPN (2008)"],
+["#5fb3a0","Lampu busur dan pijar","1879–1920","1,7→15","lumen per watt, 1880 sampai 1920","Lampu busur terlalu terang untuk rumah, tetapi Charles Brush memakainya menerangi Public Square Cleveland (1879). Pada Oktober 1879 Edison menguji lampu berfilamen karbon dalam vakum, dan lampu Joseph Swan dibuat pada 1881. Pada 1882 Edison sudah menjual lebih dari 150 sistem yang menyalakan 30.000+ lampu. Savoy Theatre London jadi gedung publik pertama berlampu listrik (1881).","Optica OPN (2008); Hoare Lea (2019)"],
+["#4f8fdb","Lampu pelepasan gas","1927–1965","35","lumen/watt, prototipe fluoresen GEC 1934","Edmund Germer mematenkan lampu fluoresen pada 1927. GEC Inggris membuat prototipenya pada 1934, dan GE merilisnya April 1938; penjualannya melonjak di AS meski ada Perang Dunia II. Lalu menyusul metal-halide (diumumkan 1962, dipakai di World’s Fair New York 1964) dan sodium tekanan tinggi (dijual 1965).","Optica OPN (2008)"],
+["#8a6ae0","LED","1962–2014","2014","Nobel Fisika untuk LED biru","Nick Holonyak Jr. membuat LED merah pertama pada 1962. Tanpa cahaya biru, lampu putih mustahil dibuat; tantangan itu bertahan sekitar tiga dekade sampai Akasaki, Amano, dan Nakamura berhasil di awal 1990-an, dan Nakamura mencapai desain praktisnya pada 1993. Di AS, EISA 2007 mewajibkan bohlam rumah tangga 40–100 watt sekitar 25% lebih hemat, tanpa melarang semua bohlam pijar.","Nobel Prize (2014); Display Daily; Tokyo Weekender; EPA"]
+];
+document.getElementById("t").innerHTML=D.map(function(d){return '<article class="era" style="--c:'+d[0]+'"><div class="yr">'+d[2]+'</div><h2>'+d[1]+'</h2><div class="big">'+d[3]+'</div><div class="bl">'+d[4]+'</div><div class="box"><p>'+d[5]+'</p><p class="s">Sumber: '+d[6]+'</p></div></article>'}).join("");
+var h=document.getElementById("h"),b=document.getElementById("b"),bt=document.getElementById("bt");
+b.addEventListener("click",function(){var o=h.classList.toggle("on");b.setAttribute("aria-pressed",o);b.setAttribute("aria-label",o?"Matikan bohlam":"Nyalakan bohlam");bt.textContent=o?"Klik untuk mematikan":"Klik bohlam untuk menyalakan"});
+var tr=document.getElementById("t"),pv=document.querySelector(".prev"),nx=document.querySelector(".next");
+nx.onclick=function(){tr.scrollBy({left:360,behavior:"smooth"})};pv.onclick=function(){tr.scrollBy({left:-360,behavior:"smooth"})};
+function chk(){var s=tr.scrollLeft;pv.style.opacity=s<=0?.3:1;pv.style.pointerEvents=s<=0?"none":"auto";var e=s>=tr.scrollWidth-tr.clientWidth-10;nx.style.opacity=e?.3:1;nx.style.pointerEvents=e?"none":"auto"}
+tr.addEventListener("scroll",chk);setTimeout(chk,100);
+</script></body></html>
